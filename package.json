@@ -1,0 +1,28 @@
+{
+  "name": "the-data-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shadow4945/the-data-express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shadow4945/the-data-express/issues"
+  },
+  "homepage": "https://github.com/Shadow4945/the-data-express#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.16.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.1",
+    "express-sessions": "^1.0.6",
+    "mongoose": "^4.8.5",
+    "pug": "^2.0.0-beta11"
+  }
+}
