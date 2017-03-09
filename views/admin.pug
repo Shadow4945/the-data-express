@@ -1,0 +1,18 @@
+doctype
+html
+    head
+        title= Admin Page
+        link(href='/styles/style.css', rel='stylesheet')
+    body
+        h3 List of Users
+
+        table(class='gridtable')
+            tr
+                th Id
+                th Name
+                th 
+            each item in library
+                tr
+                    td #{item.name}
+                    td
+                        a(href='/delete/' + item.id) Delete
