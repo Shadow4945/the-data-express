@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title The Data Express
+  body
+    h1 Edit Account
+    form(id='createForm', method='post', action='/edit')
+        label(for='username') Username:
+        input(type='text', name='username')
+        br
+        label(for='password') Password:
+        input(type='text', name='password')
+        br
+        label(for='email') Email:
+        input(type='text', name='email')
+        br
+        label(for='age') Age:
+        input(type='number', name='age')
+        br
+        input(type='submit', value='Create Account')
