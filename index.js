@@ -3,7 +3,7 @@ var express = require('express'),
     path = require('path'),
     route = require('./routes/routes.js'),
     bodyParser = require('body-parser'),
-    bcrypt = require('bcrpyt-nodejs'),
+    bcrypt = require('bcrypt-nodejs'),
     cookieParser = require('cookie-parser')
     expressSessions = require('express-sessions');
 
