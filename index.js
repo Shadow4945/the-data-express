@@ -17,10 +17,12 @@ app.use(express.static(path.join(__dirname + '/public')));
 var urlencodedParser = bodyParser.urlencoded({ extended: true})
 
     app.get('/', route.index);
+    app.get('/login', route.login);
+    app.post('/login',urlencodedParser, route.loggedIn);
     app.get('/admin/:id', route.admin);
     app.get('/createAccount', route.create);
     app.post('/createAccount', urlencodedParser, route.createAccount);
-    app.get('edit/:id', route.edit);
+    app.get('/edit/:id', route.edit);
     app.post('/edit/:id', urlencodedParser, route.editAccount);
     app.get('/delete/:id', route.delete);
 

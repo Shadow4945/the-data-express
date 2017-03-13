@@ -2,19 +2,25 @@ doctype html
 html
   head
     title The Data Express
+    link(rel='stylesheet', href='../styles/style.css' type='text/css')
   body
+  div
     h1 Edit Account
     form(id='createForm', method='post', action='/edit')
-        label(for='username') Username:
+        label(for='username') Username: 
         input(type='text', name='username')
         br
-        label(for='password') Password:
+        br
+        label(for='password') Password: 
         input(type='text', name='password')
         br
-        label(for='email') Email:
+        br
+        label(for='email') Email: 
         input(type='text', name='email')
         br
-        label(for='age') Age:
+        br
+        label(for='age') Age: 
         input(type='number', name='age')
         br
-        input(type='submit', value='Create Account')
+        br
+        input(type='submit', value='Edit Account')

@@ -7,6 +7,8 @@ mdb.on('error', console.error.bind(console, 'connection error:'));
 mdb.once('open', function (callback) {
     
 });
+var bcrypt = require('bcrypt-nodejs');
+var hash;
 
 var userSchema = mongoose.Schema({
     username: String,
@@ -33,16 +35,23 @@ exports.create = function(req, res){
 }
 
 exports.admin = function(req,res){
-    res.render('admin');
+    User.find(function(err,user){
+        if(err) return console.error(err);
+        res.render('admin',{library: user});
+    })
+    
 }
 
 exports.createAccount = function(req, res){
     //CRUD here
-    var _user = new User({ username: req.body.username, password: req.body.password, access_level: req.body.access_level, email: req.body.email, 
+    bcrypt.hash(req.body.password,null,null,function(err,hash){
+        console.log(hash);
+    });
+    var _user = new User({ username: req.body.username, password: hash, access_level: req.body.access_level, email: req.body.email, 
         age: req.body.age, answer1: req.body.answer1, answer2: req.body.answer2, answer3: req.body.answer3 });
     _user.save(function (err, _user){
         if(err) return console.error(err);
-            console.log(req.body.username + 'added');
+            console.log(_user.id + ' added');
         });
     res.redirect('/');
 }
@@ -61,7 +70,13 @@ exports.editAccount = function(req,res){
     User.findById(req.params.id, function (err, _user){
         if (err) return console.error(err);
         _user.username = req.body.username;
-        _user.password = req.body.password;
+        bcrypt.compare(req.body.password, _user.password,function(err,res){
+            if(res){
+                
+            }else{
+                _user.password = req.body.password;
+            }
+        });
         _user.access_level = req.body.access_level;
         _user.email = req.body.email;
         _user.age = req.body.age;
@@ -83,4 +98,18 @@ exports.delete = function(req, res){
         if (err) return console.error(err);
         res.redirect('/');
     });
+}
+
+exports.login = function(req,res){
+    res.render('login');
+}
+
+exports.loggedIn = function(req,res){
+    User.find(function(err,_users){
+        if(err) return console.error(err);
+        for(var i = 0; i < _users.length; i++){
+
+        }
+    });
+    res.redirect('/');
 }

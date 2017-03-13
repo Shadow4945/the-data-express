@@ -2,23 +2,34 @@ doctype html
 html
   head
     title The Data Express
+    link(rel='stylesheet', href='styles/style.css' type='text/css')
   body
+  div
     h1 Create Account
     form(id='createForm', method='post', action='/createAccount')
-        label(for='username') Username:
-        input(type='text', name='username')
+        label(for='access_level') Access Level: 
+        input(type='text', name='access_level', value='Regular', readonly='')
         br
-        label(for='password') Password:
-        input(type='text', name='password')
         br
-        label(for='email') Email:
-        input(type='text', name='email')
+        label(for='username') Username: 
+        input(type='text', name='username', required='')
         br
-        label(for='age') Age:
-        input(type='number', name='age')
+        br
+        label(for='password') Password: 
+        input(type='text', name='password', required='')
+        br
+        br
+        label(for='email') Email: 
+        input(type='text', name='email', required='')
+        br
+        br
+        label(for='age') Age: 
+        input(type='number', name='age', required='')
+        br
         br
         div
             | What is your favorite color? 
+            br
             input(name='colorQ', type='radio', value='Red')
             | Red
             br
@@ -33,6 +44,7 @@ html
             br
             div
             | What is your degree? 
+            br
             input(name='degreeQ', type='radio', value='Web')
             | Web Dev
             br
@@ -47,6 +59,7 @@ html
             br
             div
             | Which do you prefer? 
+            br
             input(name='petQ', type='radio', value='Dog')
             | Dog
             br
