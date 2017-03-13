@@ -5,7 +5,7 @@ mongoose.connect('mongodb://localhost/data');
 var mdb = mongoose.connection;
 mdb.on('error', console.error.bind(console, 'connection error:'));
 mdb.once('open', function (callback) {
-    
+
 });
 var bcrypt = require('bcrypt-nodejs');
 var hash;
@@ -24,56 +24,86 @@ var userSchema = mongoose.Schema({
 var User = mongoose.model('Data_Express_Collection', userSchema);
 
 
-exports.index = function(req, res){
+exports.index = function (req, res) {
     User.find(function (err, _user) {
         if (err) return console.error(err);
-        res.render('index',{ title: 'Users', users: _user});
-    }); 
+        res.render('index', {
+            title: 'Users',
+            users: _user
+        });
+    });
 }
-exports.create = function(req, res){
+exports.create = function (req, res) {
     res.render('createAcc');
 }
 
-exports.admin = function(req,res){
-    User.find(function(err,user){
-        if(err) return console.error(err);
-        res.render('admin',{library: user});
+exports.admin = function (req, res) {
+    User.find(function (err, user) {
+        if (err) return console.error(err);
+        res.render('admin', {
+            library: user
+        });
     })
-    
+
 }
 
-exports.createAccount = function(req, res){
+exports.createAccount = function (req, res) {
     //CRUD here
-    bcrypt.hash(req.body.password,null,null,function(err,hash){
+    var _user; 
+
+    bcrypt.hash(req.body.password, null, null, function (err, hash) {
         console.log(hash);
+        _user = new User({
+        username: req.body.username,
+        password: hash,
+        access_level: req.body.access_level,
+        email: req.body.email,
+        age: req.body.age,
+        answer1: req.body.answer1,
+        answer2: req.body.answer2,
+        answer3: req.body.answer3
     });
-    var _user = new User({ username: req.body.username, password: hash, access_level: req.body.access_level, email: req.body.email, 
-        age: req.body.age, answer1: req.body.answer1, answer2: req.body.answer2, answer3: req.body.answer3 });
-    _user.save(function (err, _user){
-        if(err) return console.error(err);
-            console.log(_user.id + ' added');
-        });
+
+     _user.save(function (err, _user) {
+        if (err) return console.error(err);
+        console.log(_user + ' added');
+    });
+
+    });
+    // var _user = new User({
+    //     username: req.body.username,
+    //     password: hash,
+    //     access_level: req.body.access_level,
+    //     email: req.body.email,
+    //     age: req.body.age,
+    //     answer1: req.body.answer1,
+    //     answer2: req.body.answer2,
+    //     answer3: req.body.answer3
+    // });
+   
     res.redirect('/');
 }
 
-exports.edit = function(req, res){
+exports.edit = function (req, res) {
     //CRUD
     User.findById(req.params.id, function (err, _user) {
         if (err) return console.error(err);
-        res.render('edit', { _user: _user });
-    }); 
+        res.render('edit', {
+            _user: _user
+        });
+    });
     res.render('edit');
 }
 
-exports.editAccount = function(req,res){
+exports.editAccount = function (req, res) {
     //CRUD
-    User.findById(req.params.id, function (err, _user){
+    User.findById(req.params.id, function (err, _user) {
         if (err) return console.error(err);
         _user.username = req.body.username;
-        bcrypt.compare(req.body.password, _user.password,function(err,res){
-            if(res){
-                
-            }else{
+        bcrypt.compare(req.body.password, _user.password, function (err, res) {
+            if (res) {
+
+            } else {
                 _user.password = req.body.password;
             }
         });
@@ -83,32 +113,42 @@ exports.editAccount = function(req,res){
         _user.answer1 = req.body.answer1;
         _user.answer2 = req.body.answer2;
         _user.answer3 = req.body.answer3;
-        _user.save(function (err, _user){
+        _user.save(function (err, _user) {
             if (err) return console.error(err);
-                console.log(req.body.username + 'updated');
+            console.log(req.body.username + 'updated');
         });
-        
+
     });
     res.redirect('/');
 }
 
-exports.delete = function(req, res){
+exports.delete = function (req, res) {
     //CRUD
-    User.findByIdAndRemove(req.params.id, function (err, _user){
+    User.findByIdAndRemove(req.params.id, function (err, _user) {
         if (err) return console.error(err);
         res.redirect('/');
     });
 }
 
-exports.login = function(req,res){
+exports.login = function (req, res) {
     res.render('login');
 }
 
-exports.loggedIn = function(req,res){
-    User.find(function(err,_users){
-        if(err) return console.error(err);
-        for(var i = 0; i < _users.length; i++){
+exports.loggedIn = function (req, res) {
+    User.find(function (err, _users) {
+        if (err) return console.error(err);
+        for (var i = 0; i < _users.length; i++) {
+            if (_users[i].username == req.body.username) {
+                console.log(_users[i].password);
+                bcrypt.compare(req.body.password, _users[i].password, function (err, res) {
+                    if (res) {
+                        //console.log(_users[i].password);
+                    } else {
 
+                    }
+                });
+
+            }
         }
     });
     res.redirect('/');
