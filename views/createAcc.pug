@@ -4,6 +4,12 @@ html
     title The Data Express
     link(rel='stylesheet', href='styles/style.css' type='text/css')
   body
+  .navbar
+    ul
+      li
+        a.active(href='/') Home
+      li 
+        a(href='/') Login 
   div
     h1 Create Account
     form(id='createForm', method='post', action='/createAccount')
