@@ -52,7 +52,7 @@ exports.index = function (req, res) {
             navbar9: "Edit",
             navbar10: "a href='/logout'",
             navbar11: "Logout",
-            users: _user,
+           // canvasScript: "var ctx = document.getElementById('question1').getContext('2d')",
             cookie: "Last Visited: " + req.session.lastVisited
         });
     });
@@ -74,7 +74,7 @@ exports.index = function (req, res) {
             navbar7: "Edit",
             navbar8: "a href='/logout'",
             navbar9: "Logout",
-            users: _user,
+            //canvasScript: "var ctx = document.getElementById('question1').getContext('2d')",
             cookie: "Last Visited: " + req.session.lastVisited
         });
     });
@@ -92,7 +92,7 @@ exports.index = function (req, res) {
             navbar7: "Login",
             navbar8: "a href='/createAccount'",
             navbar9: "Create Account",
-            users: _user
+            //canvasScript: "var ctx1 = document.getElementById('question1').getContext('2d'); var ctx2 = document.getElementById('question2').getContext('2d'); var ctx3 = document.getElementById('question3').getContext('2d'); var graph1 = new BarGraph(ctx1); graph1.margin = 2; graph1.width = 450; graph1.height = 150; graph1.xAxisLabelArr = ['Red', 'Blue', 'Green']; "
         });
     });
     }
