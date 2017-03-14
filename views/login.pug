@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title The Data Express
+    link(rel='stylesheet', href='styles/style.css' type='text/css')
+  body
+  .navbar
+    ul
+      li
+        a.active(href='/') Home 
+      li 
+        a(href='/createAccount') Create Account
+    div
+        h1 Login
+        form(id='loginForm', method='post', action='/login')
+            label(for='username') Username: 
+            input(type='text', name='username', required='')
+            br
+            label(for='password') Password: 
+            input(type='text', name='password', required='')
+            br
+            input(type='submit', value='Login')

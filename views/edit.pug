@@ -10,21 +10,21 @@ html
         a.active(href='/') Home
   div
     h1 Edit Account
-    form(id='createForm', method='post', action='/edit')
+    form(id='createForm', method='post', action='/edit/' + user.id)
         label(for='username') Username: 
-        input(type='text', name='username')
+        input(type='text', name='username' value=user.username)
         br
         br
-        label(for='password') Password: 
-        input(type='text', name='password')
-        br
-        br
+        //- label(for='password') Password: 
+        //- input(type='text', name='password' value=user.password)
+        //- br
+        //- br
         label(for='email') Email: 
-        input(type='text', name='email')
+        input(type='text', name='email' value=user.email)
         br
         br
         label(for='age') Age: 
-        input(type='number', name='age')
+        input(type='number', name='age' value=user.age)
         br
         br
         input(type='submit', value='Edit Account')

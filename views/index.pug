@@ -4,13 +4,19 @@ html
     title The Data Express
     link(rel='stylesheet', href='styles/style.css' type='text/css')
   body
-  .navbar
-    ul
-      li
-        a.active(href='/') Home
-      li 
-        a(href='/login') Login 
-      li 
-        a(href='/createAccount') Create Account
+  #{navbar1}
+    #{navbar2}
+      #{navbar3}
+        #{navbar4} #{navbar5}
+      #{navbar3}
+        #{navbar6} #{navbar7}
+      #{navbar3}
+        #{navbar8} #{navbar9}
+      #{navbar3}
+        #{navbar10} #{navbar11}
     h1 Welcome to The Data Express!
-    canvas(style='', width='200', height='100')
+    div
+      canvas(id='question1' style='')
+      canvas(id='question2' style='')
+      canvas(id='question3' style='')
+    h3 #{cookie}
